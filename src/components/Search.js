@@ -1,6 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 
-function Search() {
+function Search({handleSearchItem}) {
+  
+  const [searchItem, setSearchItem] = useState("")
+
+  function runSearch(e){
+    setSearchItem((e.target.value).toLowerCase())
+    handleSearchItem(searchItem)
+  }
+
+
   return (
     <div className="searchbar">
       <label htmlFor="search">Search Plants:</label>
@@ -8,7 +17,7 @@ function Search() {
         type="text"
         id="search"
         placeholder="Type a name to search..."
-        onChange={(e) => console.log("Searching...")}
+        onChange={runSearch}
       />
     </div>
   );
